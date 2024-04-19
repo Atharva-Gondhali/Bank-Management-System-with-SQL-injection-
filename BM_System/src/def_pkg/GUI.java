@@ -1634,7 +1634,7 @@ public class GUI {
 		// function to be executed when Block Account Button is clicked
 		btn_block_account.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//System.out.println("Request received of blocking account with acc num:"+acc_num+" and cnic:"+cnic);
+				//System.out.println("Request received of blocking account with acc num:"+acc_num+" and aadhar:"+aadhar);
 				
 				int block_status = manager.block_account( Integer.parseInt(tf_account_no.getText()), tf_cnic.getText() );
 
@@ -1826,7 +1826,7 @@ public class GUI {
 	
 	
 	
-	// In this screen manager will enter the client's account number and cnic number for search
+	// In this screen manager will enter the client's account number and aadhar number for search
 	void searchAccount(JFrame frame, Manager manager) {
 		JPanel f = new JPanel();
 		f.setBackground(Color.white);
@@ -2000,7 +2000,7 @@ public class GUI {
 	
 	
 	
-	// In this screen manager will enter the client's account number and cnic number for search
+	// In this screen manager will enter the client's account number and aadhar number for search
 	void updateClientInfo(JFrame frame, Manager manager) {
 		JPanel f = new JPanel();
 		f.setBackground(Color.white);
@@ -2315,7 +2315,7 @@ public class GUI {
 	
 	
 	
-	// In this screen accountant will enter the client's account number and cnic number
+	// In this screen accountant will enter the client's account number and aadhar number
 	// to search him to deposit money
 	void searchForm(JFrame frame, Accountant accountant, int case_) {
 		JPanel f = new JPanel();

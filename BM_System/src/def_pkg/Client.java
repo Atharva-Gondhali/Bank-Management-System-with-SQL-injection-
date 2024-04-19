@@ -29,13 +29,13 @@ public class Client {
 	}
 
 	// Parameterized Constructor
-	public Client(String f_name, String l_name, String father_name, String mother_name, String cnic, String dob, String phone, String email, String address) {
+	public Client(String f_name, String l_name, String father_name, String mother_name, String aadhar, String dob, String phone, String email, String address) {
 		client_id = "";
 		this.f_name = f_name;
 		this.l_name = l_name;
 		this.father_name = father_name;
 		this.mother_name = mother_name;
-		this.Aadhar = cnic;
+		this.Aadhar = aadhar;
 		this.DOB = dob;
 		this.phone = phone;
 		this.email = email;

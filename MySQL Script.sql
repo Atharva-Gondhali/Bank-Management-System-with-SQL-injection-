@@ -5,7 +5,7 @@ CREATE TABLE `bank_schema`.`client` (
   `l_name` varchar(45) NOT NULL,
   `father_name` varchar(45) NOT NULL,
   `mother_name` varchar(45) NOT NULL,
-  `CNIC` varchar(45) NOT NULL,
+  `Aadhar` varchar(45) NOT NULL,
   `DOB` date NOT NULL,
   `phone` varchar(45) NOT NULL,
   `email` varchar(45) DEFAULT NULL,

@@ -64,10 +64,11 @@ public class DB_Handler {
 			ResultSet cRs = cSt.executeQuery(cQuery);
 			if( cRs.next() ) {
 	        	// removing old instance of bank account and adding new instance with information
-				client = new Client( cRs.getString("client_id"), cRs.getString("f_name"), cRs.getString("l_name"), cRs.getString("father_name"), cRs.getString("mother_name"), cRs.getString("Aadhar"), cRs.getString("DOB"), cRs.getString("phone"), cRs.getString("email"), cRs.getString("address") );
+				client = new Client( cRs.getString("client_id"), cRs.getString("f_name"), cRs.getString("l_name"), cRs.getString("father_name"), cRs.getString("mother_name"), cRs.getString("aadhar"), cRs.getString("DOB"), cRs.getString("phone"), cRs.getString("email"), cRs.getString("address") );
 	        }
 		}
 		catch (SQLException e) {
+			System.out.println(e);
 			System.out.println("Something went wrong while checking if account exists");
 		}
 		return client;
@@ -401,7 +402,7 @@ public class DB_Handler {
 			ResultSet uaRs = uaSt.executeQuery(uaQuery);
 	        if( uaRs.next() )
 	        {
-	        	String temp_aadhar = uaRs.getString("cnic");
+	        	String temp_aadhar = uaRs.getString("aadhar");
 	        	System.out.println("Client id=" + client_id + "\tAadhar=" + temp_aadhar);
 	        	if (  temp_aadhar.equals(aadhar))
 	        		return true;
@@ -492,7 +493,7 @@ public class DB_Handler {
 		int res = 0;
 		try {
 			// Check if client already exists
-			String dQuery = "Select * From bank_schema.client Where cnic = \""+new_client.getAadhar()+"\"";
+			String dQuery = "Select * From bank_schema.client Where aadhar = \""+new_client.getAadhar()+"\"";
 			System.out.println(dQuery);
 			Statement dSt = conn.createStatement();
 			ResultSet dRs = dSt.executeQuery(dQuery);
@@ -515,7 +516,7 @@ public class DB_Handler {
 		        ciSt.executeUpdate(ciQuery);
 		        
 		        // Find the client id
-				String cQuery = "Select * From bank_schema.client Where cnic = \""+new_client.getAadhar()+"\"";
+				String cQuery = "Select * From bank_schema.client Where aadhar = \""+new_client.getAadhar()+"\"";
 				Statement cSt = conn.createStatement();
 				ResultSet cRs = cSt.executeQuery(cQuery);
 				if( cRs.next() ) {
