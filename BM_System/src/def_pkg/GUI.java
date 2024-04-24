@@ -96,7 +96,7 @@ public class GUI {
 				else {
 					System.out.println("Login type="+user.getType());
 					if( user.getType().compareTo("Client") == 0 ) {
-						Client client = db.getClient( user.getLoginId() );
+						ClientInterface client = db.getClient( user.getLoginId() );
 						Bank_Account account = db.getAccount( user.getLoginId() );
 						
 						if ( Integer.valueOf(account.getStatus()) == 0 ) 
@@ -348,7 +348,7 @@ public class GUI {
 	
 	
 	// this function display the menu screen for client
-	void openClientMenu(JFrame frame, Client client, Bank_Account account) {
+	void openClientMenu(JFrame frame, ClientInterface client, Bank_Account account) {
 		JPanel f = new JPanel();
 		f.setBackground(Color.white);
 		
@@ -472,7 +472,7 @@ public class GUI {
 	
 	
 	// this function displays the clients account details on screen
-	void open_info_page(JFrame frame, Client client, Bank_Account account)
+	void open_info_page(JFrame frame, ClientInterface client, Bank_Account account)
 	{
 		JPanel f = new JPanel();
 		f.setBackground(Color.white);
@@ -581,7 +581,7 @@ public class GUI {
 	
 	
 	// cardless cash withdrawal screen
-	void open_cardless_page_1(JFrame frame, Client client, Bank_Account account)
+	void open_cardless_page_1(JFrame frame, ClientInterface client, Bank_Account account)
 	{
 		System.out.println("Control Shifted to Cardless form_1 page");
 		JPanel f = new JPanel();
@@ -676,7 +676,7 @@ public class GUI {
 					open_cardless_page_1(frame, client, account);
 				}
 				else {
-					String cardless_status = client.do_cardless_cash_withdrawal(account, tf_amount.getText(), tf_temp_pin.getText());
+					String cardless_status = client.doCardlessCashWithdrawal(account, tf_amount.getText(), tf_temp_pin.getText());
 					if ( cardless_status.compareTo("a")==0 )
 					{
 						JOptionPane.showMessageDialog(f, "Your card is currently blocked");
@@ -723,7 +723,7 @@ public class GUI {
 	
 	
 	// money transfer screen
-	void openTransferMoneyForm(JFrame frame, Client client, Bank_Account account) {
+	void openTransferMoneyForm(JFrame frame, ClientInterface client, Bank_Account account) {
 		JPanel f = new JPanel();
 		f.setBackground(Color.white);
 		
@@ -830,7 +830,7 @@ public class GUI {
 	
 	
 	// view e statement screen for client
-	void eStatement2(JFrame frame, Client client, Bank_Account account) {
+	void eStatement2(JFrame frame, ClientInterface client, Bank_Account account) {
 		JPanel f = new JPanel();
 		f.setBackground(Color.white);
 		
@@ -1000,7 +1000,7 @@ public class GUI {
 	
 	
 	// client screen to change password of his login id
-	void open_change_password_form(JFrame frame, Client client, Bank_Account account)
+	void open_change_password_form(JFrame frame, ClientInterface client, Bank_Account account)
 	{
 		System.out.println("Control Shifted to Change password form");
 		JPanel f = new JPanel();
@@ -1068,7 +1068,7 @@ public class GUI {
 		btn_change_password.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int change_pwd_status = client.change_password(tf_curr_pass.getText(), tf_new_pass_1.getText(), tf_new_pass_2.getText(), account.getAccountNum());
+				int change_pwd_status = client.changePassword(tf_curr_pass.getText(), tf_new_pass_1.getText(), tf_new_pass_2.getText(), account.getAccountNum());
 		
 				if (change_pwd_status == -1)
 				{

@@ -52,28 +52,26 @@ public class DB_Handler {
 		return user;
 	}
 
-	
-	public Client getClient( String login_id ) {
-		Client client = new Client();
-		try {	
-			// finding the account in database
+	public ClientInterface getClient(String login_id) {
+		ClientInterface client = new Client(); // Use the interface type
+		try {
+			// Finding the account in the database
 			String cQuery = "Select * From bank_schema.client Where client_id = (select client_id from bank_schema.bank_account where "
-					+ "login_id = "+login_id+")";
+					+ "login_id = " + login_id + ")";
 			System.out.println(cQuery);
 			Statement cSt = conn.createStatement();
 			ResultSet cRs = cSt.executeQuery(cQuery);
-			if( cRs.next() ) {
-	        	// removing old instance of bank account and adding new instance with information
-				client = new Client( cRs.getString("client_id"), cRs.getString("f_name"), cRs.getString("l_name"), cRs.getString("father_name"), cRs.getString("mother_name"), cRs.getString("aadhar"), cRs.getString("DOB"), cRs.getString("phone"), cRs.getString("email"), cRs.getString("address") );
-	        }
-		}
-		catch (SQLException e) {
+			if (cRs.next()) {
+				// Removing old instance of bank account and adding new instance with information
+				client = new Client(cRs.getString("client_id"), cRs.getString("f_name"), cRs.getString("l_name"), cRs.getString("father_name"), cRs.getString("mother_name"), cRs.getString("aadhar"), cRs.getString("DOB"), cRs.getString("phone"), cRs.getString("email"), cRs.getString("address"));
+			}
+		} catch (SQLException e) {
 			System.out.println(e);
 			System.out.println("Something went wrong while checking if account exists");
 		}
 		return client;
 	}
-	
+
 	
 	
 	public Bank_Account getAccount( String login_id ) {
@@ -767,7 +765,7 @@ public class DB_Handler {
 	
 	
 	
-	public int createPDF( Client client, Bank_Account account, String From, String To ) { 
+	public int createPDF( ClientInterface client, Bank_Account account, String From, String To ) {
 		int res = 0;
 		try {	
 			
