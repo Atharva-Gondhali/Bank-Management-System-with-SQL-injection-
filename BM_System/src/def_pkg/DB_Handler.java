@@ -1,11 +1,7 @@
 package def_pkg;
 
 import java.io.FileOutputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 
 import com.itextpdf.html2pdf.HtmlConverter;
@@ -28,30 +24,34 @@ public class DB_Handler {
             throw new IllegalStateException("Unable to connect to the database. " + e.getMessage());
         } 
 	}
-	
-	
-	
-	public Login_Account signIn( String username, String password ) {
+
+
+
+	public Login_Account signIn(String username, String password) {
 		Login_Account user = new Login_Account();
-		try {	
-			// finding the account in database
-			String laQuery = "Select * From bank_schema.login_account Where username = \""+username+"\" and "
-					+ "password = \""+password+"\"";
-			System.out.println(laQuery);
-			Statement laSt = conn.createStatement();
-			ResultSet laRs = laSt.executeQuery(laQuery);
-			if( laRs.next() ) {
-	        	// removing old instance of bank account and adding new instance with information
-				user = new Login_Account( laRs.getString("login_id"), laRs.getString("username"), "", laRs.getString("type") );
-	        }
-		}
-		catch (SQLException e) {
+		try {
+			// finding the account in database using parameterized query
+			String query = "SELECT * FROM bank_schema.login_account WHERE username = ? AND password = ?";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, username);
+			statement.setString(2, password);
+			ResultSet rs = statement.executeQuery();
+
+			if (rs.next()) {
+				// removing old instance of bank account and adding new instance with information
+				user = new Login_Account(
+						rs.getString("login_id"),
+						rs.getString("username"),
+						"",
+						rs.getString("type")
+				);
+			}
+		} catch (SQLException e) {
 			System.out.println("Something went wrong while checking if account exists");
 		}
 		return user;
 	}
-	
-	
+
 	
 	public Client getClient( String login_id ) {
 		Client client = new Client();
@@ -389,36 +389,29 @@ public class DB_Handler {
 		}
 		return false;
 	}
-	
-	
-	
-	public boolean verify_aadhar(int client_id, String aadhar)
-	{
-		try
-		{
-			String uaQuery = "Select * From bank_schema.client Where client_id = "+ client_id;
-			System.out.println(uaQuery);
-			Statement uaSt = conn.createStatement();
-			ResultSet uaRs = uaSt.executeQuery(uaQuery);
-	        if( uaRs.next() )
-	        {
-	        	String temp_aadhar = uaRs.getString("aadhar");
-	        	System.out.println("Client id=" + client_id + "\tAadhar=" + temp_aadhar);
-	        	if (  temp_aadhar.equals(aadhar))
-	        		return true;
-	        	else
-	        		return false;
-	        }
-	        else
-	        	return false;
-		}
-		catch (SQLException e)
-		{
+
+
+
+	public boolean verify_aadhar(int client_id, String aadhar) {
+		try {
+			String query = "SELECT aadhar FROM bank_schema.client WHERE client_id = ?";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setInt(1, client_id);
+			ResultSet rs = statement.executeQuery();
+
+			if (rs.next()) {
+				String temp_aadhar = rs.getString("aadhar");
+				System.out.println("Client id=" + client_id + "\tAadhar=" + temp_aadhar);
+				return temp_aadhar.equals(aadhar);
+			} else {
+				return false; // No client found with the given client_id
+			}
+		} catch (SQLException e) {
 			System.out.println("Something went wrong while verifying aadhar");
+			return false;
 		}
-		return false;
 	}
-	
+
 	
 	
 	public int create_login(String username, String password)
@@ -623,30 +616,41 @@ public class DB_Handler {
 	
 	
 	// Check if any client with provided Aadhar and bank account number is present or not and returning that client information
-	Client searchClient1( String accountNum, String Aadhar ) {
+	Client searchClient1(String accountNum, String Aadhar) {
 		Client client = new Client();
-		try {	
-			// finding the client in database
-			String aQuery = "Select * From bank_schema.client Where Aadhar = \""+Aadhar+"\" and ( select count(*)"
-					+ " from bank_schema.bank_account where acc_num = "+accountNum+") = 1";
-			System.out.println(aQuery);
-			Statement uaSt = conn.createStatement();
-			ResultSet uaRs = uaSt.executeQuery(aQuery);
-	        
-			if( uaRs.next() ) {
-	        	// removing old instance of client and adding new instance with information
-	        	client = new Client( uaRs.getString("client_id"), uaRs.getString("f_name"), uaRs.getString("l_name"), uaRs.getString("father_name"), uaRs.getString("mother_name"), uaRs.getString("Aadhar"), uaRs.getString("DOB"), uaRs.getString("phone"), uaRs.getString("email"), uaRs.getString("address") );
-	        }
-	        return client;
-		}
-		catch (SQLException e) {
+		try {
+			// finding the client in database using parameterized query
+			String query = "SELECT * FROM bank_schema.client WHERE Aadhar = ? AND (SELECT COUNT(*) FROM bank_schema.bank_account WHERE acc_num = ?) = 1";
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setString(1, Aadhar);
+			statement.setString(2, accountNum);
+			ResultSet rs = statement.executeQuery();
+
+			if (rs.next()) {
+				// removing old instance of client and adding new instance with information
+				client = new Client(
+						rs.getString("client_id"),
+						rs.getString("f_name"),
+						rs.getString("l_name"),
+						rs.getString("father_name"),
+						rs.getString("mother_name"),
+						rs.getString("Aadhar"),
+						rs.getString("DOB"),
+						rs.getString("phone"),
+						rs.getString("email"),
+						rs.getString("address")
+				);
+			}
+			return client;
+		} catch (SQLException e) {
 			System.out.println("Something went wrong while checking if client exists");
 			return client;
 		}
 	}
-	
-	
-	
+
+
+
+
 	// Check if any account with provided account number is present or not and returning the account if found
 	Bank_Account searchAccount2( String accountNum ) {
 		Bank_Account account = new Bank_Account();

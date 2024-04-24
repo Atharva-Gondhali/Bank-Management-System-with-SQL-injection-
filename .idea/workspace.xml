@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f59612ae-45d9-41aa-a9a8-a1d20c7e77dd" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BM_System/E_Statement_2021-07-23T09_59_37.603298300.pdf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BM_System/libs/barcodes-7.1.9.jar" beforeDir="false" />
@@ -133,6 +134,9 @@
       <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/Transaction_History.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/anchor.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/ddot.png" beforeDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+>>>>>>> 787c381 (added sql injection prevention)
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
