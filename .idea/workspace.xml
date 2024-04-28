@@ -5,37 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f59612ae-45d9-41aa-a9a8-a1d20c7e77dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/BM_System/src/def_pkg/ClientInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BM_System/src/def_pkg/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/BM_System/src/def_pkg/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BM_System/src/def_pkg/DB_Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/BM_System/src/def_pkg/DB_Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BM_System/src/def_pkg/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/BM_System/src/def_pkg/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/DB_Handler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/DB_Handler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$13.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$14.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$15.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$16.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$17.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$18.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$19.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$19.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$20.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$20.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$21.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$21.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$22.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$22.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$23.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$23.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$24.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$24.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$25.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$25.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$26.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$26.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$70.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$70.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Bank-Management-System/def_pkg/GUI.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,18 +34,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BM_System.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/athar/Documents/GitHub/Bank-Management-System-with-SQL-injection-",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "advanced.settings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BM_System.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/athar/Documents/GitHub/Bank-Management-System-with-SQL-injection-&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

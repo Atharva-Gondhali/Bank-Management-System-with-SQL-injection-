@@ -2760,7 +2760,7 @@ public class GUI {
 	    JSpinner fromMonthSpinner = new JSpinner(fromMonthValues);   
 	    fromMonthSpinner.setBounds(100,150,40,25);    
 	    f.add(fromMonthSpinner); 
-	    SpinnerModel fromYearValues =  new SpinnerNumberModel(2020, 2018, 2021, 1);  
+	    SpinnerModel fromYearValues =  new SpinnerNumberModel(2020, 2018, 2024, 1);
 	    JSpinner fromYearSpinner = new JSpinner(fromYearValues);   
 	    fromYearSpinner.setBounds(150,150,55,25);    
 	    f.add(fromYearSpinner); 
