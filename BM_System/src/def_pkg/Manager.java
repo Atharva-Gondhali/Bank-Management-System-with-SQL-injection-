@@ -27,6 +27,7 @@ public class Manager {
 	int block_account(int acc_num, String aadhar)
 	{
 		DB_Handler db = new DB_Handler();
+
 		int temp_client = db.get_client_id(acc_num);
 		int temp_acc_type = db.get_account_status(acc_num);
 		System.out.println("Corresponding client_id:"+temp_client+"  acc_type:"+temp_acc_type);
@@ -45,7 +46,7 @@ public class Manager {
 		}
 		else
 		{
-			db.block_account(acc_num);
+			db.block_account(acc_num,name);
 		}
 		return 0;
 	}
@@ -71,7 +72,7 @@ public class Manager {
 		}
 		else
 		{
-			db.unblock_account(acc_num);
+			db.unblock_account(acc_num,name);
 		}
 		return 0;
 	}

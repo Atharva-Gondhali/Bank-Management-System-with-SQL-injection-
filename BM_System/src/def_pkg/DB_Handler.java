@@ -254,30 +254,58 @@ public class DB_Handler {
 	
 	
 	
-	public void block_account(int acc_num)
+	public void block_account(int acc_num, String name)
 	{
 		try {	
 			// Check if client already exists
 			String uaQuery = "Update bank_schema.bank_account set status = 2 Where acc_num = " + acc_num;
+			String newQuery = "UPDATE bank_schema.bank_account SET remarks = 'Account blocked by " + name + "' WHERE acc_num = " + acc_num;
+
 			System.out.println(uaQuery);
+			System.out.println(newQuery);
 			Statement uaSt = conn.createStatement();
+			Statement newSt = conn.createStatement();
 			uaSt.executeUpdate(uaQuery);
+			newSt.executeUpdate(newQuery);
 		}
 		catch (SQLException e) {
 			System.out.println("Something went wrong while getting current password");
 		}
 	}
+
+	public String getRemarks(String accNum) {
+		String result = "";
+		try {
+			int num = Integer.parseInt(accNum);
+			String uaQuery = "SELECT remarks FROM bank_schema.bank_account WHERE acc_num = ?";
+			PreparedStatement uaSt = conn.prepareStatement(uaQuery);
+			uaSt.setInt(1, num);
+			ResultSet uaRs = uaSt.executeQuery();
+			if (uaRs.next()) {
+				result = uaRs.getString("remarks");
+			}
+			uaRs.close();
+			uaSt.close();
+		} catch (SQLException e) {
+			System.out.println("Something went wrong: " + e.getMessage());
+		}
+		return result;
+	}
+
 	
 	
-	
-	public void unblock_account(int acc_num)
+	public void unblock_account(int acc_num,String name)
 	{
 		try {	
 			// Check if client already exists
 			String uaQuery = "Update bank_schema.bank_account set status = 1 Where acc_num = " + acc_num;
+			String newQuery = "UPDATE bank_schema.bank_account SET remarks = 'Account unblocked by " + name + "' WHERE acc_num = " + acc_num;
 			System.out.println(uaQuery);
+			System.out.println(newQuery);
 			Statement uaSt = conn.createStatement();
+			Statement newSt = conn.createStatement();
 			uaSt.executeUpdate(uaQuery);
+			newSt.executeUpdate(newQuery);
 		}
 		catch (SQLException e) {
 			System.out.println("Something went wrong while getting current password");
@@ -500,7 +528,7 @@ public class DB_Handler {
 				String ciQuery = "Insert Into bank_schema.client Values(NULL, \""+new_client.getFName()+"\", \""+
 						new_client.getLName()+"\", \""+new_client.getFatherName()+"\", \""+
 						new_client.getMotherName()+"\", \""+new_client.getAadhar()+"\", STR_TO_DATE(\""+
-						new_client.getDOB()+"\", \"%d,%m,%Y\"), \""+
+						new_client.getDOB()+"\", \"%d/%m/%Y\"), \""+
 						new_client.getPhone()+"\", \""+new_client.getEmail()+"\", \""+new_client.getAddress()+"\")";
 				System.out.println(ciQuery);
 				Statement ciSt = conn.createStatement();

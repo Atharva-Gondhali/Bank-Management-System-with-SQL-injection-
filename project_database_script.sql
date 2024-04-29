@@ -24,7 +24,7 @@ ALTER TABLE bank_schema.client AUTO_INCREMENT=10000;
 CREATE TABLE `bank_schema`.`login_account` (
   `login_id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
-  `password` varchar(64) NOT NULL,
+  `password` varchar(12) NOT NULL,
   `type` char(1) NOT NULL,
   PRIMARY KEY (`login_id`),
   UNIQUE KEY `login_id_UNIQUE` (`login_id`)
@@ -74,6 +74,7 @@ CREATE TABLE `bank_schema`.`bank_account` (
   `opening_date` date NOT NULL,
   `closing_date` date DEFAULT NULL,
   `card_num` int DEFAULT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`acc_num`),
   UNIQUE KEY `acc_num_UNIQUE` (`acc_num`),
   KEY `client_id` (`client_id`),
@@ -148,49 +149,33 @@ INSERT INTO bank_schema.client (client_id, f_name, l_name, father_name, mother_n
 
 -- Login_Account Table
 INSERT INTO bank_schema.login_account (login_id, username, password, type) VALUES
-(60001, 'manager1', SHA2('pass1234', 256), 'M'),
-(60002, 'accountant1', SHA2('pass5678', 256), 'A'),
-(60003, 'customer1', SHA2('pass9999', 256), 'C'),
-(60004, 'customer2', SHA2('pass8888', 256), 'C'),
-(60005, 'customer3', SHA2('pass7777', 256), 'C'),
-(60006, 'customer4', SHA2('pass6666', 256), 'C'),
-(60007, 'customer5', SHA2('pass5555', 256), 'C'),
-(60008, 'customer6', SHA2('pass4444', 256), 'C'),
-(60009, 'customer7', SHA2('pass3333', 256), 'C'),
-(60010, 'customer8', SHA2('pass2222', 256), 'C'),
-(60011, 'customer9', SHA2('pass1111', 256), 'C'),
-(60012, 'customer10', SHA2('pass0000', 256), 'C'),
-(60013, 'accountant2', SHA2('pass4321', 256), 'A'),
-(60014, 'customer11', SHA2('pass8765', 256), 'C'),
-(60015, 'customer12', SHA2('pass1357', 256), 'C'),
-(60016, 'accountant3', SHA2('pass2468', 256), 'A'),
-(60017, 'customer13', SHA2('pass3698', 256), 'C'),
-(60018, 'customer14', SHA2('pass9753', 256), 'C'),
-(60019, 'customer15', SHA2('pass1346', 256), 'C'),
-(60020, 'customer16', SHA2('pass1846', 256), 'C');
+(60001, 'manager1', 'pass1234', 'M'),
+(60002, 'accountant1', 'pass5678', 'A'),
+(60003, 'accountant2', 'pass4321', 'A'),
+(60004, 'accountant3', 'pass2468', 'A');
 
 -- Employee Table 
 INSERT INTO bank_schema.employee (employee_id, f_name, l_name, father_name, mother_name, job, phone_no, email, login_id) VALUES
 (20001, 'Robert', 'Martinez', 'William Martinez', 'Patricia Martinez', 'Manager', '1112223333', 'robert.martinez@example.com', 60001),
 (20002, 'Jennifer', 'Clark', 'Daniel Clark', 'Carol Clark', 'Accountant', '2223334444', 'jennifer.clark@example.com', 60002),
-(20003, 'Daniel', 'Young', 'Richard Young', 'Linda Young', 'Teller', '3334445555', 'daniel.young@example.com', 60003),
-(20004, 'Patricia', 'Lewis', 'Joseph Lewis', 'Maria Lewis', 'Teller', '4445556666', 'patricia.lewis@example.com', 60004),
-(20005, 'Matthew', 'Walker', 'Thomas Walker', 'Karen Walker', 'Teller', '5556667777', 'matthew.walker@example.com', 60005),
-(20006, 'Jessica', 'Hall', 'Kevin Hall', 'Dorothy Hall', 'Teller', '6667778888', 'jessica.hall@example.com', 60006),
-(20007, 'Brian', 'Garcia', 'David Garcia', 'Susan Garcia', 'Accountant', '7778889999', 'brian.garcia@example.com', 60007),
-(20008, 'Lauren', 'Lee', 'Christopher Lee', 'Laura Lee', 'Teller', '8889990000', 'lauren.lee@example.com', 60008),
-(20009, 'Kevin', 'Harris', 'Brian Harris', 'Donna Harris', 'Teller', '9990001111', 'kevin.harris@example.com', 60009),
-(20010, 'Sarah', 'Turner', 'James Turner', 'Margaret Turner', 'Teller', '1112223334', 'sarah.turner@example.com', 60010),
-(20011, 'Mark', 'Allen', 'Robert Allen', 'Jennifer Allen', 'Accountant', '2223334445', 'mark.allen@example.com', 60011),
-(20012, 'Rachel', 'Parker', 'Matthew Parker', 'Rebecca Parker', 'Teller', '3334445556', 'rachel.parker@example.com', 60012),
-(20013, 'Justin', 'Morris', 'Steven Morris', 'Karen Morris', 'Teller', '4445556667', 'justin.morris@example.com', 60013),
-(20014, 'Heather', 'Wright', 'Jeffrey Wright', 'Amy Wright', 'Teller', '5556667778', 'heather.wright@example.com', 60014),
-(20015, 'Keith', 'Lopez', 'George Lopez', 'Nancy Lopez', 'Teller', '6667778889', 'keith.lopez@example.com', 60015),
-(20016, 'Stephanie', 'Gonzalez', 'Christopher Gonzalez', 'Laura Gonzalez', 'Teller', '7778889990', 'stephanie.gonzalez@example.com', 60016),
-(20017, 'Jordan', 'Evans', 'Timothy Evans', 'Angela Evans', 'Teller', '8889990001', 'jordan.evans@example.com', 60017),
-(20018, 'Megan', 'Hill', 'Thomas Hill', 'Rebecca Hill', 'Teller', '9990001112', 'megan.hill@example.com', 60018),
-(20019, 'Trevor', 'Flores', 'Edward Flores', 'Cynthia Flores', 'Teller', '1112223335', 'trevor.flores@example.com', 60019),
-(20020, 'Caroline', 'Reed', 'Frank Reed', 'Kathleen Reed', 'Teller', '2223334446', 'caroline.reed@example.com', 60020);
+(20003, 'Daniel', 'Young', 'Richard Young', 'Linda Young', 'Teller', '3334445555', 'daniel.young@example.com', NULL),
+(20004, 'Patricia', 'Lewis', 'Joseph Lewis', 'Maria Lewis', 'Teller', '4445556666', 'patricia.lewis@example.com', NULL),
+(20005, 'Matthew', 'Walker', 'Thomas Walker', 'Karen Walker', 'Teller', '5556667777', 'matthew.walker@example.com', NULL),
+(20006, 'Jessica', 'Hall', 'Kevin Hall', 'Dorothy Hall', 'Teller', '6667778888', 'jessica.hall@example.com', NULL),
+(20007, 'Brian', 'Garcia', 'David Garcia', 'Susan Garcia', 'Accountant', '7778889999', 'brian.garcia@example.com', 60003),
+(20008, 'Lauren', 'Lee', 'Christopher Lee', 'Laura Lee', 'Teller', '8889990000', 'lauren.lee@example.com', NULL),
+(20009, 'Kevin', 'Harris', 'Brian Harris', 'Donna Harris', 'Teller', '9990001111', 'kevin.harris@example.com', NULL),
+(20010, 'Sarah', 'Turner', 'James Turner', 'Margaret Turner', 'Teller', '1112223334', 'sarah.turner@example.com', NULL),
+(20011, 'Mark', 'Allen', 'Robert Allen', 'Jennifer Allen', 'Accountant', '2223334445', 'mark.allen@example.com', 60004),
+(20012, 'Rachel', 'Parker', 'Matthew Parker', 'Rebecca Parker', 'Teller', '3334445556', 'rachel.parker@example.com', NULL),
+(20013, 'Justin', 'Morris', 'Steven Morris', 'Karen Morris', 'Teller', '4445556667', 'justin.morris@example.com', NULL),
+(20014, 'Heather', 'Wright', 'Jeffrey Wright', 'Amy Wright', 'Teller', '5556667778', 'heather.wright@example.com', NULL),
+(20015, 'Keith', 'Lopez', 'George Lopez', 'Nancy Lopez', 'Teller', '6667778889', 'keith.lopez@example.com', NULL),
+(20016, 'Stephanie', 'Gonzalez', 'Christopher Gonzalez', 'Laura Gonzalez', 'Teller', '7778889990', 'stephanie.gonzalez@example.com',NULL),
+(20017, 'Jordan', 'Evans', 'Timothy Evans', 'Angela Evans', 'Teller', '8889990001', 'jordan.evans@example.com', NULL),
+(20018, 'Megan', 'Hill', 'Thomas Hill', 'Rebecca Hill', 'Teller', '9990001112', 'megan.hill@example.com', NULL),
+(20019, 'Trevor', 'Flores', 'Edward Flores', 'Cynthia Flores', 'Teller', '1112223335', 'trevor.flores@example.com', NULL),
+(20020, 'Caroline', 'Reed', 'Frank Reed', 'Kathleen Reed', 'Teller', '2223334446', 'caroline.reed@example.com', NULL);
 
 -- Card Table
 INSERT INTO bank_schema.card (card_num, type, Status, Pin_code, Issue_date) VALUES

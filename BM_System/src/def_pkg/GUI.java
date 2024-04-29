@@ -14,7 +14,32 @@ public class GUI {
 		frame.setContentPane(f);
 		frame.setVisible(true);
 	}
-	
+
+	public static boolean isValidPassword(String password) {
+		String specialChars = "!@#$%^&*()_+-={}|[]:;\"'<>,.?/\\";
+		boolean hasLowerCase = false;
+		boolean hasUpperCase = false;
+		boolean hasDigit = false;
+		boolean hasSpecialCharacter = false;
+
+		if (password.length() < 6 || password.length() > 12) {
+			return false;
+		}
+
+		for (char c : password.toCharArray()) {
+			if (Character.isLowerCase(c)) {
+				hasLowerCase = true;
+			} else if (Character.isUpperCase(c)) {
+				hasUpperCase = true;
+			} else if (Character.isDigit(c)) {
+				hasDigit = true;
+			} else if (specialChars.contains(String.valueOf(c))) {
+				hasSpecialCharacter = true;
+			}
+		}
+
+		return hasLowerCase && hasUpperCase && hasDigit && hasSpecialCharacter;
+	}
 	
 	
 	//------------------------------------------------------------
@@ -304,38 +329,48 @@ public class GUI {
 					open_Signup_form_1(frame, user);
 				}
 			});
+
+
 			
 			// function executed when Create Login Account Button is clicked
 			btn_create_login_Account.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
-					int signup_status = user.signup(tf_username.getText(), tf_password.getText(), tf_password_2.getText(), acc_num);
-					if (signup_status == -1)
-					{
-						System.out.println("The 2 passwords did not match");
-						JOptionPane.showMessageDialog(f, "The entered passwords do not match");
-						frame.remove(f);
-						frame.repaint();
-						frame.validate();
-						open_Signup_form_2(frame, user, acc_num);
+					String password = tf_password.getText();
+
+					if(isValidPassword(password)){
+						int signup_status = user.signup(tf_username.getText(), password, tf_password_2.getText(), acc_num);
+						if (signup_status == -1)
+						{
+							System.out.println("The 2 passwords did not match");
+							JOptionPane.showMessageDialog(f, "The entered passwords do not match");
+							frame.remove(f);
+							frame.repaint();
+							frame.validate();
+							open_Signup_form_2(frame, user, acc_num);
+						}
+						else if (signup_status == -2)
+						{
+							System.out.println("Something went wrong in creating login account because the returned login id is -1");
+							JOptionPane.showMessageDialog(f, "Unfortunately the login account could not be made");
+							frame.remove(f);
+							frame.repaint();
+							frame.validate();
+							openSignInForm(frame, user);
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(f, "Your Login Account has been successfully created. Please Login to continue");
+							frame.remove(f);
+							frame.repaint();
+							frame.validate();
+							openSignInForm(frame, user);
+						}
 					}
-					else if (signup_status == -2)
+					else
 					{
-						System.out.println("Something went wrong in creating login account because the returned login id is -1");
-						JOptionPane.showMessageDialog(f, "Unfortunately the login account could not be made");
-						frame.remove(f);
-						frame.repaint();
-						frame.validate();
-						openSignInForm(frame, user);
+						JOptionPane.showMessageDialog(f, "Invalid password. Password must contain atleast 1 capital letter, 1 special character and 1 numerical character");
 					}
-					else 
-					{
-						JOptionPane.showMessageDialog(f, "Your Login Account has been successfully created. Please Login to continue");
-						frame.remove(f);
-						frame.repaint();
-						frame.validate();
-						openSignInForm(frame, user);
-					}
+
 				}
 			});
 	}
@@ -1067,44 +1102,49 @@ public class GUI {
 		// function to be executed when Change Password Button is clicked
 		btn_change_password.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				int change_pwd_status = client.changePassword(tf_curr_pass.getText(), tf_new_pass_1.getText(), tf_new_pass_2.getText(), account.getAccountNum());
-		
-				if (change_pwd_status == -1)
-				{
-					JOptionPane.showMessageDialog(f, "The system was unable to find the login account");
-					frame.remove(f);
-					frame.repaint();
-					frame.validate();
-					open_change_password_form(frame, client, account);
-				}
-				else if ( change_pwd_status == -2 )
-				{
-					System.out.println("The current password does not match with the already configured password");
-					JOptionPane.showMessageDialog(f, "The current password does not match with the already configured password");
-					frame.remove(f);
-					frame.repaint();
-					frame.validate();
-					open_change_password_form(frame, client, account);
-				}
-				else if (change_pwd_status == -3)
-				{
-					System.out.println("The new passwords does not match with one another");
-					JOptionPane.showMessageDialog(f, "The new passwords does not match with one another");
-					frame.remove(f);
-					frame.repaint();
-					frame.validate();
-					open_change_password_form(frame, client, account);
-				}
-				else
-				{
-					JOptionPane.showMessageDialog(f, "You have successfully changed your password. You will have to Sign in again to continue");
-					frame.remove(f);
-					frame.repaint();
-					frame.validate();
-					Login_Account user = new Login_Account();
-					openSignInForm(frame, user);
-				}
+					 String pass_new = 	tf_new_pass_1.getText();
+					 if(isValidPassword(pass_new)){
+						 int change_pwd_status = client.changePassword(tf_curr_pass.getText(),pass_new , tf_new_pass_2.getText(), account.getAccountNum());
+
+						 if (change_pwd_status == -1)
+						 {
+							 JOptionPane.showMessageDialog(f, "The system was unable to find the login account");
+							 frame.remove(f);
+							 frame.repaint();
+							 frame.validate();
+							 open_change_password_form(frame, client, account);
+						 }
+						 else if ( change_pwd_status == -2 )
+						 {
+							 System.out.println("The current password does not match with the already configured password");
+							 JOptionPane.showMessageDialog(f, "The current password does not match with the already configured password");
+							 frame.remove(f);
+							 frame.repaint();
+							 frame.validate();
+							 open_change_password_form(frame, client, account);
+						 }
+						 else if (change_pwd_status == -3)
+						 {
+							 System.out.println("The new passwords does not match with one another");
+							 JOptionPane.showMessageDialog(f, "The new passwords does not match with one another");
+							 frame.remove(f);
+							 frame.repaint();
+							 frame.validate();
+							 open_change_password_form(frame, client, account);
+						 }
+						 else
+						 {
+							 JOptionPane.showMessageDialog(f, "You have successfully changed your password. You will have to Sign in again to continue");
+							 frame.remove(f);
+							 frame.repaint();
+							 frame.validate();
+							 Login_Account user = new Login_Account();
+							 openSignInForm(frame, user);
+						 }
+					 }else{
+						 JOptionPane.showMessageDialog(f, "Invalid password. Password must contain atleast 1 capital letter, 1 special character and 1 numerical character");
+					 }
+
 			}
 		});
 	}
@@ -1880,7 +1920,7 @@ public class GUI {
 		
 		// Client Account Status
 		JLabel lCAccStatus = new JLabel("Status: ");
-		lCAccStatus.setBounds(150,320,250, 40);
+		lCAccStatus.setBounds(150,320,400, 40);
 		lCAccStatus.setVisible(false);
 		f.add(lCAccStatus);
 		
@@ -1929,6 +1969,7 @@ public class GUI {
 				}
 				
 				// Both client and his account was found
+
 				else {
 		
 					lCName.setText("Name:  "+client.getFName()+" "+client.getLName() );
@@ -1937,10 +1978,16 @@ public class GUI {
 					lCAccType.setText("Account Type:  "+account.getType() );
 					lCAccBalance.setText("Balance:  "+account.getBalance() );
 					String temp = "Open";
-					if( Integer.valueOf( account.getStatus() ) ==  0 )
-						temp = "Close";
-					else if( Integer.valueOf( account.getStatus() ) ==  2 )
-						temp = "Block";
+					if( Integer.valueOf( account.getStatus() ) ==  0 ) {
+						DB_Handler db = new DB_Handler();
+						String rem = db.getRemarks(account.getAccountNum());
+						temp = "Closed by "+ rem;
+					}
+					else if( Integer.valueOf( account.getStatus() ) ==  2 ) {
+						DB_Handler db = new DB_Handler();
+						String rem = db.getRemarks(account.getAccountNum());
+						temp = rem;
+					}
 					lCAccStatus.setText("Status:  "+ temp );
 					lCAccODate.setText("Opening Date:  "+account.getOpeningDate() );
 					
@@ -2049,7 +2096,7 @@ public class GUI {
 		f.add(tfPhone);
 		
 		// Client Email
-		JLabel lCEmail = new JLabel("Account Type: ");
+		JLabel lCEmail = new JLabel("Email: ");
 		lCEmail.setBounds(150,260,250, 40);
 		lCEmail.setVisible(false);
 		f.add(lCEmail);
